@@ -1,4 +1,4 @@
 /**
- * Domain models representing data returned by the GitHub API.
+ * Command line interface entry points and argument handling.
  */
-package io.github.lcmlo.githubactivity.formatter;
+package io.github.lcmlo.githubactivity.cli;

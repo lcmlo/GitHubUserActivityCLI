@@ -1,4 +1,9 @@
-package io.github.lcmlo.githubactivity;
+package io.github.lcmlo.githubactivity.formatter;
+
+import io.github.lcmlo.githubactivity.model.GithubEvent;
+import io.github.lcmlo.githubactivity.model.GithubEventType;
+
+import java.util.List;
 
 /**
  * Utility class responsible for transforming GitHub event data
@@ -26,5 +31,59 @@ package io.github.lcmlo.githubactivity;
  * formatted strings.
  */
 public class EventFormatter {
+    public static String format(List<GithubEvent> events) {
+        StringBuilder sb = new StringBuilder();
+        String lastPushRepo = null;
+        int pushCount = 0;
 
+        for (GithubEvent event : events) {
+            GithubEventType type = event.type();
+            String repo = event.repoName();
+
+            if (type == GithubEventType.PUSH) {
+                if (repo.equals(lastPushRepo))
+                    pushCount++;
+                else {
+                    flush(sb, pushCount, lastPushRepo);
+                    lastPushRepo = repo;
+                    pushCount = 1;
+                }
+                continue;
+            }
+            flush(sb, pushCount, lastPushRepo);
+            pushCount = 0;
+            lastPushRepo = null;
+
+            sb.append(formatNonPush(type, repo)).append("\n");
+        }
+
+        flush(sb, pushCount, lastPushRepo); // in case last event is a push
+        return sb.toString();
+    }
+
+    private static String formatNonPush(GithubEventType type, String repo) {
+        return switch (type) {
+            case PUSH -> null;
+            case WATCH -> "Starred " + repo;
+            case FORK -> "Forked " + repo;
+            case CREATE -> "Created " + repo;
+            case ISSUES -> "Opened/Closed " + repo;
+            case COMMENT -> "Commented on " + repo;
+            case UNKNOWN -> "Performed an activity on " + repo;
+        };
+    }
+
+    /*
+        Helper method to help improve readability,
+        deals with consecutive pushes to the same repo
+     */
+    private static void flush(StringBuilder sb,int pushCount,String lastPushRepo) {
+        if (pushCount > 0) {
+            sb.append("Pushed ")
+                    .append(pushCount)
+                    .append(pushCount == 1 ? " time to " : " times to ")
+                    .append(lastPushRepo)
+                    .append("\n");
+        }
+    }
 }

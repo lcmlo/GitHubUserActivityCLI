@@ -1,4 +1,4 @@
 /**
- * Domain models representing data returned by the GitHub API.
+ * Utilities that convert GitHub events into human-readable CLI output.
  */
-package io.github.lcmlo.githubactivity.model;
+package io.github.lcmlo.githubactivity.formatter;

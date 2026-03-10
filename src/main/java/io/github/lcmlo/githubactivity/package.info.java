@@ -1,8 +1,7 @@
 /**
- * Core components of the GitHub Activity CLI application.
+ * GitHub Activity CLI application.
  *
- * <p>This package contains the CLI entry point and the core
- * services responsible for retrieving and formatting GitHub
- * user activity.
+ * <p>This package contains the core components required to fetch
+ * and display recent GitHub user activity using the GitHub REST API.
  */
-package com.lcmlo.githubactivity;
+package io.github.lcmlo.githubactivity;

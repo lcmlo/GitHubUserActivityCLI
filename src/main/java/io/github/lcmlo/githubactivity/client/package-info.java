@@ -1,4 +1,4 @@
 /**
- * Domain models representing data returned by the GitHub API.
+ * Classes responsible for communicating with the GitHub REST API.
  */
-package io.github.lcmlo.githubactivity.formatter;
+package io.github.lcmlo.githubactivity.client;

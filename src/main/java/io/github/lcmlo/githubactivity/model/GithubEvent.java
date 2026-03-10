@@ -1,4 +1,5 @@
-package io.github.lcmlo.githubactivity.models;
+package io.github.lcmlo.githubactivity.model;
+
 /**
  * Represents a GitHub activity event returned by the GitHub API.
  *
@@ -8,14 +9,12 @@ package io.github.lcmlo.githubactivity.models;
  * <ul>
  *     <li>Event type (e.g. PushEvent, IssuesEvent, WatchEvent)</li>
  *     <li>Repository name associated with the event</li>
- *     <li>Event-specific payload data (e.g. number of commits)</li>
  * </ul>
  *
  * <p>The structure of this class reflects a simplified representation
  * of the GitHub Events API response.
- *
+ * <p>
  * GitHub API documentation:
  * https://docs.github.com/en/rest/activity/events
  */
-public class GithubEvent {
-}
+public record GithubEvent(GithubEventType type, String repoName, String date) {}
