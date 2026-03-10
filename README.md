@@ -128,5 +128,5 @@ Commented on torvalds/linux
 
 ## Credits
 
-This project is based on the **GitHub Activity CLI** exercise from the [Roadmap.sh Java Backend Path](https://roadmap.sh). It was implemented as part of a learning roadmap to practice Java, APIs, JSON handling, and CLI applications.
+This project is based on the **GitHub Activity CLI** exercise from the [Roadmap.sh Java Backend Path](https://roadmap.sh/projects/github-user-activity). It was implemented as part of a learning roadmap to practice Java, APIs, JSON handling, and CLI applications.
 
